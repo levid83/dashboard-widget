@@ -1,0 +1,17 @@
+.report {
+  display: grid;
+  grid-template-columns: minmax(5em, max-content) repeat(
+      auto-fit,
+      minmax(8em, 1fr)
+    );
+  grid-auto-flow: column;
+  column-gap: 1.5em;
+  row-gap: 0.1em;
+
+  padding: 1em;
+
+  background-color: white;
+  color: #666666;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
