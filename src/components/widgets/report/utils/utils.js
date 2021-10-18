@@ -8,6 +8,7 @@
 export function convertToFixed(value = null, decimals = null) {
   if (value === null || isNaN(value)) return value;
   decimals = parseInt(decimals);
+  value = parseFloat(value);
   if (isNaN(decimals)) return value;
   return value.toFixed(parseInt(decimals));
 }
@@ -20,8 +21,9 @@ export function convertToFixed(value = null, decimals = null) {
  * @param {syting} suffix suffix to the value
  * @returns {string} formated value
  */
-export function formatString(num = null, prefix = "", suffix = "") {
+export function formatNumericString(num = null, prefix = "", suffix = "") {
   if (num === null) return "";
+  num = parseFloat(num);
   if (!isNaN(num)) {
     if (num > 1000000) num = (num / 1000000).toFixed(1) + "m";
     if (num > 1000000000) num = (num / 1000000000).toFixed(1) + "b";
