@@ -102,7 +102,9 @@ ReportWithErrorBoundary.propTypes = {
   /**
    * Configuration array for report columns
    */
-  colConfig: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  colConfig: PropTypes.arrayOf(
+    PropTypes.shape({ key: PropTypes.string.isRequired })
+  ).isRequired,
 };
 
 ReportWithErrorBoundary.displayName = "Report";

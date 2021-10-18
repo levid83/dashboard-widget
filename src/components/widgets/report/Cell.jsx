@@ -27,7 +27,10 @@ import styles from "./styles/Cell.module.css";
 function Cell(props) {
   const { data, format, cellConfig, minMax } = props;
   const { decimals, prefix, suffix } = format;
-  const { showPlot, showValue } = cellConfig;
+  let { showPlot = true, showValue = true } = cellConfig;
+
+  if (showPlot === null) showPlot = true;
+  if (showValue === null) showValue = true;
 
   return (
     <div className={styles.cell}>
@@ -49,11 +52,12 @@ Cell.propTypes = {
     decimals: PropTypes.number,
   }).isRequired,
   cellConfig: PropTypes.shape({
-    showPlot: PropTypes.bool.isRequired,
-    showValue: PropTypes.bool.isRequired,
-    isHidden: PropTypes.bool.isRequired,
+    showPlot: PropTypes.bool,
+    showValue: PropTypes.bool,
+    isHidden: PropTypes.bool,
   }).isRequired,
   minMax: PropTypes.object.isRequired,
 };
 
+Cell.defaultParams = {};
 export default Cell;

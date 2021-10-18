@@ -22,7 +22,10 @@ import styles from "./styles/ColumnHeader.module.css";
 function ColumnHeader(props) {
   const { header, minMax, config } = props;
   const { title, prefix, suffix } = header;
-  const { showPlot, showValue } = config;
+  let { showPlot = true, showValue = true } = config;
+
+  if (showPlot === null) showPlot = true;
+  if (showValue === null) showValue = true;
 
   const min = formatString(convertToFixed(minMax.min, 2), prefix, suffix);
   const max = formatString(convertToFixed(minMax.max, 2), prefix, suffix);
@@ -56,9 +59,10 @@ ColumnHeader.propTypes = {
     max: PropTypes.number.isRequired,
   }).isRequired,
   config: PropTypes.shape({
-    showPlot: PropTypes.bool.isRequired,
-    showValue: PropTypes.bool.isRequired,
-    isHidden: PropTypes.bool.isRequired,
+    key: PropTypes.string.isRequired,
+    showPlot: PropTypes.bool,
+    showValue: PropTypes.bool,
+    isHidden: PropTypes.bool,
   }).isRequired,
 };
 

@@ -35,9 +35,14 @@ function getColumnMinMax(data) {
  * @returns
  */
 function Column({ header, data, config }) {
+  let { showPlot = true, showValue = true, isHidden = false } = config;
+
+  if (showPlot === null) showPlot = true;
+  if (showValue === null) showValue = true;
+
   const minMax = getColumnMinMax(data);
 
-  if (config.isHidden || (!config.showPlot && !config.showValue)) return null;
+  if (isHidden || (!showPlot && !showValue)) return null;
   return (
     <>
       <ColumnHeader header={header} minMax={minMax} config={config} />
@@ -55,13 +60,20 @@ function Column({ header, data, config }) {
 }
 
 Column.propTypes = {
-  header: PropTypes.object.isRequired,
+  header: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    prefix: PropTypes.string,
+    suffix: PropTypes.string,
+    decimals: PropTypes.number,
+  }).isRequired,
   data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   config: PropTypes.shape({
-    showPlot: PropTypes.bool.isRequired,
-    showValue: PropTypes.bool.isRequired,
-    isHidden: PropTypes.bool.isRequired,
-  }),
+    key: PropTypes.string.isRequired,
+    showPlot: PropTypes.bool,
+    showValue: PropTypes.bool,
+    isHidden: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Column;

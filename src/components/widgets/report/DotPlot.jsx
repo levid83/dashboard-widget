@@ -35,7 +35,7 @@ DotPlot.propTypes = {
   minMax: PropTypes.shape({
     min: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default DotPlot;
