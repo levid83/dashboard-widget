@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Value from "./Value";
 import DotPlot from "./DotPlot";
 
-import { convertToFixed, formatString } from "./utils/utils";
+import { convertToFixed, formatNumericString } from "./utils/utils";
 
 import styles from "./styles/Cell.module.css";
 
@@ -36,7 +36,11 @@ function Cell(props) {
     <div className={styles.cell}>
       {showValue && (
         <Value
-          data={formatString(convertToFixed(data.v, decimals), prefix, suffix)}
+          data={formatNumericString(
+            convertToFixed(data.v, decimals),
+            prefix,
+            suffix
+          )}
         />
       )}
       {showPlot && <DotPlot data={data.v} minMax={minMax} />}

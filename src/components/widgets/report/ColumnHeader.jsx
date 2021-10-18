@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { convertToFixed, formatString } from "./utils/utils";
+import { convertToFixed, formatNumericString } from "./utils/utils";
 
 import styles from "./styles/ColumnHeader.module.css";
 /**
@@ -27,8 +27,16 @@ function ColumnHeader(props) {
   if (showPlot === null) showPlot = true;
   if (showValue === null) showValue = true;
 
-  const min = formatString(convertToFixed(minMax.min, 2), prefix, suffix);
-  const max = formatString(convertToFixed(minMax.max, 2), prefix, suffix);
+  const min = formatNumericString(
+    convertToFixed(minMax.min, 2),
+    prefix,
+    suffix
+  );
+  const max = formatNumericString(
+    convertToFixed(minMax.max, 2),
+    prefix,
+    suffix
+  );
 
   return (
     <>
