@@ -7,6 +7,7 @@ import RowHeader from "./RowHeader";
 import Column from "./Column";
 
 import styles from "./styles/Report.module.css";
+import { deepCompare } from "./utils/utils";
 
 function getColumnData(data, idx) {
   return data.map((row) => row[idx]);
@@ -109,4 +110,4 @@ ReportWithErrorBoundary.propTypes = {
 
 ReportWithErrorBoundary.displayName = "Report";
 
-export default ReportWithErrorBoundary;
+export default React.memo(ReportWithErrorBoundary, deepCompare);

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import ColumnHeader from "./ColumnHeader";
 import Cell from "./Cell";
+import { deepCompare } from "./utils/utils";
 
 /**
  * Get the min and max values of a report column
@@ -76,4 +77,4 @@ Column.propTypes = {
   }).isRequired,
 };
 
-export default Column;
+export default React.memo(Column, deepCompare);

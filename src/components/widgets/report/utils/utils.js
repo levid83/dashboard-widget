@@ -1,3 +1,5 @@
+import isEqual from "react-fast-compare";
+
 /**
  *  Convert a number to given decimals
  *
@@ -30,4 +32,11 @@ export function formatNumericString(num = null, prefix = "", suffix = "") {
     else if (num > 1000) num = (num / 1000).toFixed(1) + "k";
   }
   return `${prefix || ""}${num}${suffix || ""}`;
+}
+/** Deeply compare 2 objects
+ * @param {Object} 1st object to compare
+ * @param {Object} 2nd object to compare
+ */
+export function deepCompare(obj1, obj2) {
+  return isEqual(obj1, obj2);
 }

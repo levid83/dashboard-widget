@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 import Value from "./Value";
 import DotPlot from "./DotPlot";
 
-import { convertToFixed, formatNumericString } from "./utils/utils";
+import {
+  deepCompare,
+  convertToFixed,
+  formatNumericString,
+} from "./utils/utils";
 
 import styles from "./styles/Cell.module.css";
 
@@ -63,5 +67,4 @@ Cell.propTypes = {
   minMax: PropTypes.object.isRequired,
 };
 
-Cell.defaultParams = {};
-export default Cell;
+export default React.memo(Cell, deepCompare);

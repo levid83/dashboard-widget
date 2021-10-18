@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import styles from "./styles/RowHeader.module.css";
+import { deepCompare } from "./utils/utils";
 /**
  * Renders the report's row header
  *
@@ -27,4 +28,4 @@ RowHeader.propTypes = {
   ).isRequired,
 };
 
-export default RowHeader;
+export default React.memo(RowHeader, deepCompare);
