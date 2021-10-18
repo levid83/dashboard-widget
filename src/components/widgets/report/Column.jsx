@@ -12,7 +12,7 @@ import Cell from "./Cell";
  *
  */
 function getColumnMinMax(data) {
-  const arr = data.map((data) => data.v);
+  const arr = data.map((data) => data.v).filter((val) => val != null);
   return {
     max: Math.max(...arr),
     min: Math.min(...arr),

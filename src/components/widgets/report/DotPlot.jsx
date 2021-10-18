@@ -14,20 +14,24 @@ function DotPlot(props) {
   const { data, minMax } = props;
   const { min, max } = minMax;
 
+  const percentage = ((data - min) * 100) / (max - min);
+
   return (
     <div className={styles.plot}>
-      <div
-        className={styles.dot}
-        style={{
-          left: `calc(${((data - min) * 100) / (max - min)}% - 0.25em)`,
-        }}
-      ></div>
+      {data != null && (
+        <div
+          className={styles.dot}
+          style={{
+            left: `calc(${percentage}% - 0.25em)`,
+          }}
+        ></div>
+      )}
     </div>
   );
 }
 
 DotPlot.propTypes = {
-  data: PropTypes.number.isRequired,
+  data: PropTypes.number,
   minMax: PropTypes.shape({
     min: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,

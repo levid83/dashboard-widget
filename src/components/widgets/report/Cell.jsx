@@ -42,7 +42,7 @@ function Cell(props) {
 }
 
 Cell.propTypes = {
-  data: PropTypes.shape({ v: PropTypes.number.isRequired }).isRequired,
+  data: PropTypes.shape({ v: PropTypes.number }).isRequired,
   format: PropTypes.shape({
     prefix: PropTypes.string,
     suffix: PropTypes.string,
