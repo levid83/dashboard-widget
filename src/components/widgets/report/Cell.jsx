@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Value from "./Value";
 import DotPlot from "./DotPlot";
 
-import { formatNumber } from "./utils/utils";
+import { convertToFixed, formatString } from "./utils/utils";
 
 import styles from "./styles/Cell.module.css";
 
@@ -32,7 +32,9 @@ function Cell(props) {
   return (
     <div className={styles.cell}>
       {showValue && (
-        <Value data={formatNumber(data.v, decimals, prefix, suffix)} />
+        <Value
+          data={formatString(convertToFixed(data.v, decimals), prefix, suffix)}
+        />
       )}
       {showPlot && <DotPlot data={data.v} minMax={minMax} />}
     </div>
@@ -42,9 +44,9 @@ function Cell(props) {
 Cell.propTypes = {
   data: PropTypes.shape({ v: PropTypes.number.isRequired }).isRequired,
   format: PropTypes.shape({
-    prefix: PropTypes.string.isRequired,
-    suffix: PropTypes.string.isRequired,
-    decimals: PropTypes.number.isRequired,
+    prefix: PropTypes.string,
+    suffix: PropTypes.string,
+    decimals: PropTypes.number,
   }).isRequired,
   cellConfig: PropTypes.shape({
     showPlot: PropTypes.bool.isRequired,

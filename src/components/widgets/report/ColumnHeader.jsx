@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { formatNumber } from "./utils/utils";
+import { convertToFixed, formatString } from "./utils/utils";
 
 import styles from "./styles/ColumnHeader.module.css";
 /**
@@ -21,11 +21,11 @@ import styles from "./styles/ColumnHeader.module.css";
  */
 function ColumnHeader(props) {
   const { header, minMax, config } = props;
-  const { title, decimals, prefix, suffix } = header;
+  const { title, prefix, suffix } = header;
   const { showPlot, showValue } = config;
 
-  const min = formatNumber(minMax.min, decimals, prefix, suffix);
-  const max = formatNumber(minMax.max, decimals, prefix, suffix);
+  const min = formatString(convertToFixed(minMax.min, 2), prefix, suffix);
+  const max = formatString(convertToFixed(minMax.max, 2), prefix, suffix);
 
   return (
     <>
@@ -47,9 +47,9 @@ ColumnHeader.propTypes = {
   header: PropTypes.shape({
     key: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    prefix: PropTypes.string.isRequired,
-    suffix: PropTypes.string.isRequired,
-    decimals: PropTypes.number.isRequired,
+    prefix: PropTypes.string,
+    suffix: PropTypes.string,
+    decimals: PropTypes.number,
   }).isRequired,
   minMax: PropTypes.shape({
     min: PropTypes.number.isRequired,

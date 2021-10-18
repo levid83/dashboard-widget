@@ -1,18 +1,31 @@
 /**
- *  Format a number
+ *  Convert a number to given decimals
  *
  * @param {number} value number to format
  * @param {number} decimals decimal precision of the number
- * @param {number} prefix prefix attached to the number
- * @param {number} suffix suffix attached to the number
- * @returns {string} formated number
+ * @returns {string} converted number as a string
  */
-export function formatNumber(value, decimals, prefix, suffix) {
-  if (value > 1000000) value = (value / 1000000).toFixed(1) + "m";
-  if (value > 1000000000) value = (value / 1000000000).toFixed(1) + "b";
-  else if (value > 1000) value = (value / 1000).toFixed(1) + "k";
-  else if (decimals != null) {
-    value = value.toFixed(decimals);
+export function convertToFixed(value = null, decimals = null) {
+  if (value === null || isNaN(value)) return value;
+  decimals = parseInt(decimals);
+  if (isNaN(decimals)) return value;
+  return value.toFixed(parseInt(decimals));
+}
+
+/**
+ *  Format a numeric value represented as a string
+ *
+ * @param {string} num value to format
+ * @param {string} prefix prefix to the value
+ * @param {syting} suffix suffix to the value
+ * @returns {string} formated value
+ */
+export function formatString(num = null, prefix = "", suffix = "") {
+  if (num === null) return "";
+  if (!isNaN(num)) {
+    if (num > 1000000) num = (num / 1000000).toFixed(1) + "m";
+    if (num > 1000000000) num = (num / 1000000000).toFixed(1) + "b";
+    else if (num > 1000) num = (num / 1000).toFixed(1) + "k";
   }
-  return `${prefix}${value}${suffix}`;
+  return `${prefix || ""}${num}${suffix || ""}`;
 }
